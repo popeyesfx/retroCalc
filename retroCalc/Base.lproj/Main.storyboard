@@ -20,12 +20,30 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="space-bg" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-Ze-eQQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="counter" translatesAutoresizingMaskIntoConstraints="NO" id="L78-5a-W6G">
+                                <rect key="frame" x="67" y="145" width="240" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Vet-gI-Gbq"/>
+                                    <constraint firstAttribute="height" constant="71" id="j9U-zm-s8o"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpanel" translatesAutoresizingMaskIntoConstraints="NO" id="sMc-9v-r5d">
+                                <rect key="frame" x="67" y="229" width="240" height="366"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="366" id="1lM-Ti-pnw"/>
+                                    <constraint firstAttribute="width" constant="240" id="Z9J-yJ-CDe"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Wdf-Ze-eQQ" secondAttribute="trailing" id="77I-BQ-Mkt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wdf-Ze-eQQ" secondAttribute="bottom" id="9JA-a4-oF9"/>
+                            <constraint firstItem="L78-5a-W6G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MXK-3J-neV"/>
+                            <constraint firstItem="sMc-9v-r5d" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OJQ-ia-u0Z"/>
+                            <constraint firstItem="sMc-9v-r5d" firstAttribute="top" secondItem="L78-5a-W6G" secondAttribute="bottom" constant="13" id="THw-7N-j8F"/>
                             <constraint firstItem="Wdf-Ze-eQQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pH2-cF-TZr"/>
+                            <constraint firstItem="L78-5a-W6G" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="125" id="qjB-mw-f4W"/>
                             <constraint firstItem="Wdf-Ze-eQQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wkA-st-zUP"/>
                         </constraints>
                     </view>
@@ -37,6 +55,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="backpanel" width="620" height="938"/>
+        <image name="counter" width="516" height="133"/>
         <image name="space-bg" width="988" height="946"/>
     </resources>
 </document>
