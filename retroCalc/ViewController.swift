@@ -28,6 +28,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let path = NSBundle.mainBundle().pathForResource("btn", ofType: "wav")
+        let sndUrl = NSURL(fileURLWithPath: path!)
+        do {
+            try btnSnd = AVAudioPlayer(contentsOfURL: sndUrl)
+            btnSnd.prepareToPlay()
+        }catch let err as NSError{
+            print(err.debugDescription)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +44,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func numberPressed(btn : UIButton){
+        playSound()
+    }
+    
+    
+    func playSound(){
+        btnSnd.play()
+    }
 }
 
