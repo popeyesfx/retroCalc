@@ -11,7 +11,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    enum Operators: String{
+    enum Operation: String{
         case Add = "+"
         case Subtract = "-"
         case Multiply = "*"
@@ -21,7 +21,11 @@ class ViewController: UIViewController {
     }
     
     var btnSnd: AVAudioPlayer!
-    
+    var runNumb = String("")
+    var leftValStr = String("")
+    var righValStr = String("")
+    var result = String("")
+    var operation :Operation = Operation.Empty
     
     @IBOutlet weak var displayLbl: UILabel!
     
@@ -46,6 +50,9 @@ class ViewController: UIViewController {
 
     @IBAction func numberPressed(btn : UIButton){
         playSound()
+        runNumb += "\(btn.tag)"
+        displayLbl.text = runNumb
+        
     }
     
     
