@@ -25,6 +25,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="space-bg" translatesAutoresizingMaskIntoConstraints="NO" id="Wdf-Ze-eQQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ground" translatesAutoresizingMaskIntoConstraints="NO" id="gyF-ZK-vrq">
+                                <rect key="frame" x="10" y="608" width="353" height="59"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="counter" translatesAutoresizingMaskIntoConstraints="NO" id="L78-5a-W6G">
                                 <rect key="frame" x="67" y="145" width="240" height="71"/>
                                 <constraints>
@@ -243,15 +246,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="40x-30-Jqa" firstAttribute="centerY" secondItem="sMc-9v-r5d" secondAttribute="centerY" id="16D-mx-Urm"/>
+                            <constraint firstItem="gyF-ZK-vrq" firstAttribute="top" secondItem="sMc-9v-r5d" secondAttribute="bottom" constant="13" id="5ka-kg-sna"/>
                             <constraint firstAttribute="trailing" secondItem="Wdf-Ze-eQQ" secondAttribute="trailing" id="77I-BQ-Mkt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wdf-Ze-eQQ" secondAttribute="bottom" id="9JA-a4-oF9"/>
                             <constraint firstItem="L78-5a-W6G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MXK-3J-neV"/>
                             <constraint firstItem="sMc-9v-r5d" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OJQ-ia-u0Z"/>
                             <constraint firstItem="40x-30-Jqa" firstAttribute="centerX" secondItem="sMc-9v-r5d" secondAttribute="centerX" id="RC7-bb-kaE"/>
                             <constraint firstItem="sMc-9v-r5d" firstAttribute="top" secondItem="L78-5a-W6G" secondAttribute="bottom" constant="13" id="THw-7N-j8F"/>
+                            <constraint firstItem="gyF-ZK-vrq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="U5r-i6-1ap"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gyF-ZK-vrq" secondAttribute="bottom" id="Zgw-B6-ydp"/>
                             <constraint firstItem="XYO-20-xbZ" firstAttribute="centerX" secondItem="L78-5a-W6G" secondAttribute="centerX" id="lax-Fm-23z"/>
                             <constraint firstItem="XYO-20-xbZ" firstAttribute="centerY" secondItem="L78-5a-W6G" secondAttribute="centerY" id="mGT-hh-bwa"/>
                             <constraint firstItem="Wdf-Ze-eQQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pH2-cF-TZr"/>
+                            <constraint firstAttribute="trailing" secondItem="gyF-ZK-vrq" secondAttribute="trailing" id="pL5-8O-Bos"/>
                             <constraint firstItem="L78-5a-W6G" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="125" id="qjB-mw-f4W"/>
                             <constraint firstItem="Wdf-Ze-eQQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="wkA-st-zUP"/>
                         </constraints>
@@ -286,6 +293,7 @@
         <image name="divide" width="111" height="114"/>
         <image name="dot" width="50" height="51"/>
         <image name="equal" width="111" height="114"/>
+        <image name="ground" width="888" height="72"/>
         <image name="multiply" width="111" height="114"/>
         <image name="percent" width="50" height="51"/>
         <image name="space-bg" width="988" height="946"/>

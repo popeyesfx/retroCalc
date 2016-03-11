@@ -7,15 +7,27 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
+    enum Operators: String{
+        case Add = "+"
+        case Subtract = "-"
+        case Multiply = "*"
+        case Divide = "/"
+        case Empty = ""
+        case Equals = "="
+    }
+    
+    var btnSnd: AVAudioPlayer!
+    
     
     @IBOutlet weak var displayLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
