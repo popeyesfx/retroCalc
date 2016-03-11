@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     
+    @IBOutlet weak var displayLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
