@@ -13,16 +13,49 @@
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleAspectFit" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchbg" translatesAutoresizingMaskIntoConstraints="NO" id="M63-uc-sxr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchground" translatesAutoresizingMaskIntoConstraints="NO" id="N2n-oi-ZRU">
+                                <rect key="frame" x="0.0" y="539" width="375" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="lFD-Zs-kg8"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Retro-Calc" translatesAutoresizingMaskIntoConstraints="NO" id="qn2-nO-bnw">
+                                <rect key="frame" x="20" y="20" width="335" height="128"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="robot" translatesAutoresizingMaskIntoConstraints="NO" id="Iaw-Ro-TpG">
+                                <rect key="frame" x="67" y="156" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="M63-uc-sxr" secondAttribute="bottom" id="12a-gD-QLZ"/>
+                            <constraint firstAttribute="trailing" secondItem="M63-uc-sxr" secondAttribute="trailing" id="2Jf-kn-qI3"/>
+                            <constraint firstAttribute="trailing" secondItem="N2n-oi-ZRU" secondAttribute="trailing" id="2L8-kf-AdW"/>
+                            <constraint firstItem="N2n-oi-ZRU" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="3dj-M8-z8c"/>
+                            <constraint firstItem="M63-uc-sxr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="gGq-kr-yZ7"/>
+                            <constraint firstItem="M63-uc-sxr" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="nwe-8H-7Li"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="N2n-oi-ZRU" secondAttribute="bottom" id="x73-Bb-O7n"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="223" y="379"/>
+            <point key="canvasLocation" x="222.5" y="378.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Retro-Calc" width="755" height="111"/>
+        <image name="launchbg" width="1433" height="957"/>
+        <image name="launchground" width="999" height="225"/>
+        <image name="robot" width="786" height="402"/>
+    </resources>
 </document>
