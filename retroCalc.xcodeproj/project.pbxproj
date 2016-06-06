@@ -39,6 +39,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		954AE72B1D05CB8200B6DC48 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				95D87ECE1C92F9A900E6F6E7 /* AppDelegate.swift */,
+				95D87ED01C92F9A900E6F6E7 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		954AE72C1D05CB8A00B6DC48 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				95D87ED71C92F9A900E6F6E7 /* LaunchScreen.storyboard */,
+				95D87ED21C92F9A900E6F6E7 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		954AE72D1D05CB8F00B6DC48 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		954AE72E1D05CB9E00B6DC48 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				95D87EDA1C92F9A900E6F6E7 /* Info.plist */,
+				95D87EE21C92FA5000E6F6E7 /* Minecraft.ttf */,
+				95D87EE01C92FA4400E6F6E7 /* btn.wav */,
+				95D87ED51C92F9A900E6F6E7 /* Assets.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		95D87EC21C92F9A900E6F6E7 = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +94,10 @@
 		95D87ECD1C92F9A900E6F6E7 /* retroCalc */ = {
 			isa = PBXGroup;
 			children = (
-				95D87EE21C92FA5000E6F6E7 /* Minecraft.ttf */,
-				95D87EE01C92FA4400E6F6E7 /* btn.wav */,
-				95D87ECE1C92F9A900E6F6E7 /* AppDelegate.swift */,
-				95D87ED01C92F9A900E6F6E7 /* ViewController.swift */,
-				95D87ED21C92F9A900E6F6E7 /* Main.storyboard */,
-				95D87ED51C92F9A900E6F6E7 /* Assets.xcassets */,
-				95D87ED71C92F9A900E6F6E7 /* LaunchScreen.storyboard */,
-				95D87EDA1C92F9A900E6F6E7 /* Info.plist */,
+				954AE72D1D05CB8F00B6DC48 /* Model */,
+				954AE72C1D05CB8A00B6DC48 /* View */,
+				954AE72B1D05CB8200B6DC48 /* Controller */,
+				954AE72E1D05CB9E00B6DC48 /* Assets */,
 			);
 			path = retroCalc;
 			sourceTree = "<group>";
@@ -294,6 +326,7 @@
 				95D87EDF1C92F9A900E6F6E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
