@@ -10,145 +10,97 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-
-    enum Operation: String{
-        case Add = "+"
-        case Subtract = "-"
-        case Multiply = "*"
-        case Divide = "/"
-        case Empty = ""
-        case Equals = "="
-    }
     
-    var btnSnd: AVAudioPlayer!
-    var runNumb = String("")
-    var leftValStr = String("")
-    var rightValStr = String("")
-    var result = String("")
-    var curOperation :Operation = Operation.Empty
     
     @IBOutlet weak var displayLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let path = NSBundle.mainBundle().pathForResource("btn", ofType: "wav")
-        let sndUrl = NSURL(fileURLWithPath: path!)
-        do {
-            try btnSnd = AVAudioPlayer(contentsOfURL: sndUrl)
-            btnSnd.prepareToPlay()
-        }catch let err as NSError{
-            print(err.debugDescription)
-        }
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func numberPressed(btn : UIButton){
-        playSound()
-        runNumb += "\(btn.tag)"
-        updateDisplay(runNumb)
+        AppData.instance.playSound()
+        AppData.instance.runNumb += "\(btn.tag)"
+        updateDisplay(AppData.instance.runNumb)
     }
     
     @IBAction func decimalPoint(sender: UIButton) {
-        playSound()
-        runNumb += "."
-        updateDisplay(runNumb)
+        AppData.instance.playSound()
+        AppData.instance.runNumb += "."
+        updateDisplay(AppData.instance.runNumb)
     }
     @IBAction func addPressed(sender: UIButton) {
-        processOperation(Operation.Add)
+        if AppData.instance.curOperation != AppData.Operation.Empty {
+            updateDisplay(AppData.instance.processOperation(AppData.Operation.Add))
+        }else {
+            AppData.instance.processOperation(AppData.Operation.Add)
+        }
     }
     
     @IBAction func subtractPressed(sender: UIButton) {
-        processOperation(Operation.Subtract)
+        if AppData.instance.curOperation != AppData.Operation.Empty {
+            updateDisplay(AppData.instance.processOperation(AppData.Operation.Subtract))
+        }else {
+            AppData.instance.processOperation(AppData.Operation.Subtract)
+        }
     }
-   
+    
     @IBAction func multiplyPressed(sender: UIButton) {
-        processOperation(Operation.Multiply)
+        if AppData.instance.curOperation != AppData.Operation.Empty  {
+            updateDisplay(AppData.instance.processOperation(AppData.Operation.Multiply))
+        }else {
+            AppData.instance.processOperation(AppData.Operation.Multiply)
+        }
+        
     }
     
     @IBAction func dividePressed(sender: UIButton) {
-        processOperation(Operation.Divide)
+        if AppData.instance.curOperation != AppData.Operation.Empty {
+            updateDisplay( AppData.instance.processOperation(AppData.Operation.Divide))
+        }else {
+            AppData.instance.processOperation(AppData.Operation.Divide)
+        }
     }
     
     @IBAction func clearDisplay(sender: UIButton) {
-        curOperation = Operation.Empty
-        leftValStr = ""
-        rightValStr = ""
-        result = ""
+        AppData.instance.curOperation = AppData.Operation.Empty
+        AppData.instance.leftValStr = ""
+        AppData.instance.rightValStr = ""
+        AppData.instance.result = ""
         updateDisplay("0")
     }
     
     @IBAction func equalsPressed(sender: UIButton) {
-        if curOperation != Operation.Empty{
-            if runNumb != ""{
-                rightValStr = runNumb
-                runNumb = ""
-                playSound()
+        if AppData.instance.curOperation != AppData.Operation.Empty{
+            if AppData.instance.runNumb != ""{
+                AppData.instance.rightValStr = AppData.instance.runNumb
+                AppData.instance.runNumb = ""
+                AppData.instance.playSound()
                 
-                if curOperation == Operation.Add{
-                    result = "\(Double(leftValStr)! + Double(rightValStr)!)"
-                }else if curOperation == Operation.Multiply{
-                    result = "\(Double(leftValStr)! * Double(rightValStr)!)"
-                }else if curOperation == Operation.Subtract{
-                    result = "\(Double(leftValStr)! - Double(rightValStr)!)"
-                }else if curOperation == Operation.Divide{
-                    result = "\(Double(leftValStr)! / Double(rightValStr)!)"
+                if AppData.instance.curOperation == AppData.Operation.Add{
+                    AppData.instance.result = "\(Double(AppData.instance.leftValStr)! + Double(AppData.instance.rightValStr)!)"
+                }else if AppData.instance.curOperation == AppData.Operation.Multiply{
+                    AppData.instance.result = "\(Double(AppData.instance.leftValStr)! * Double(AppData.instance.rightValStr)!)"
+                }else if AppData.instance.curOperation == AppData.Operation.Subtract{
+                    AppData.instance.result = "\(Double(AppData.instance.leftValStr)! - Double(AppData.instance.rightValStr)!)"
+                }else if AppData.instance.curOperation == AppData.Operation.Divide{
+                    AppData.instance.result = "\(Double(AppData.instance.leftValStr)! / Double(AppData.instance.rightValStr)!)"
                 }
                 
-                leftValStr = result
-                updateDisplay(result)
+                AppData.instance.leftValStr = AppData.instance.result
+                updateDisplay(AppData.instance.result)
             }
-
+            
         }
     }
-
-    func processOperation(op: Operation){
-        
-        if curOperation != Operation.Empty{
-           
-            if runNumb != ""{
-            rightValStr = runNumb
-            runNumb = ""
-            playSound()
-            
-            if op == Operation.Add{
-                result = "\(Double(leftValStr)! + Double(rightValStr)!)"
-            }else if op == Operation.Multiply{
-                result = "\(Double(leftValStr)! * Double(rightValStr)!)"
-            }else if op == Operation.Subtract{
-                result = "\(Double(leftValStr)! - Double(rightValStr)!)"
-            }else if op == Operation.Divide{
-                result = "\(Double(leftValStr)! / Double(rightValStr)!)"
-            }
-            
-            leftValStr = result
-            updateDisplay(result)
-            }
-            curOperation = op
-        }else{
-            
-            leftValStr = runNumb
-            runNumb = ""
-            playSound()
-            curOperation = op
-
-        }
-        
-        
-    }
-    
     
     func updateDisplay(num: String){
         displayLbl.text = num
     }
     
-    func playSound(){
-        btnSnd.play()
-    }
 }
 

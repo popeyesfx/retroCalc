@@ -27,11 +27,11 @@
                                     <constraint firstAttribute="height" constant="128" id="lFD-Zs-kg8"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Retro-Calc" translatesAutoresizingMaskIntoConstraints="NO" id="qn2-nO-bnw">
-                                <rect key="frame" x="20" y="20" width="335" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Retro-Calc" translatesAutoresizingMaskIntoConstraints="NO" id="qn2-nO-bnw">
+                                <rect key="frame" x="16" y="20" width="343" height="111"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="robot" translatesAutoresizingMaskIntoConstraints="NO" id="Iaw-Ro-TpG">
-                                <rect key="frame" x="67" y="156" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="robot" translatesAutoresizingMaskIntoConstraints="NO" id="Iaw-Ro-TpG">
+                                <rect key="frame" x="67" y="139" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="3pn-Ov-rYD"/>
                                     <constraint firstAttribute="height" constant="128" id="l04-el-PV3"/>
