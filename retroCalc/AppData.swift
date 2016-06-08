@@ -13,23 +13,31 @@ class AppData {
     
     static let instance = AppData()
     
-    enum Operation: String{
-        case Add = "+"
-        case Subtract = "-"
-        case Multiply = "*"
-        case Divide = "/"
-        case Empty = ""
-        case Equals = "="
+    enum Operation {
+        case Constant(Double)
+        case UnaryOperation((Double) -> Double)
+        case BinaryOperation((Double,Double) -> Double)
+        case Equals
     }
-
-    var btnSnd: AVAudioPlayer!
-    var runNumb = String("")
-    var leftValStr = String("")
-    var rightValStr = String("")
-    var result = String("")
-    var curOperation :Operation = Operation.Empty
+    
+    var operations: Dictionary<String,Operation> = [
+        
+        "π" : Operation.Constant(M_PI),
+        "e" : Operation.Constant(M_E),
+        "√" :  Operation.UnaryOperation(sqrt),
+        "cos" :Operation.UnaryOperation(cos),
+        "x" : Operation.BinaryOperation({ $0 * $1  }),
+        "/" : Operation.BinaryOperation({ $0 / $1  }),
+        "+" : Operation.BinaryOperation({ $0 + $1  }),
+        "-" : Operation.BinaryOperation({ $0 - $1  }),
+        "=" : Operation.Equals
+        
+    ]
     
     
+    private var accumulator = 0.0
+    private var btnSnd: AVAudioPlayer!
+    private var pending: PendingBinaryOperationInfo?
     
     private init() {
         
@@ -41,47 +49,58 @@ class AppData {
         }catch let err as NSError{
             print(err.debugDescription)
         }
-     }
+    }
     
+    struct PendingBinaryOperationInfo {
+        var binaryFunction:(Double, Double) -> Double
+        var firstOperand: Double
+    }
     
-    func processOperation(op: Operation) -> String{
+    var res: Double {
+        get {
+            
+            return accumulator
+        }
+    }
+    
+    func setOperand(operand: Double) {
         
-        if curOperation != Operation.Empty{
-            
-            if runNumb != ""{
-                rightValStr = runNumb
-                runNumb = ""
-                playSound()
-                
-                if op == Operation.Add{
-                    result = "\(Double(leftValStr)! + Double(rightValStr)!)"
-                }else if op == Operation.Multiply{
-                    result = "\(Double(leftValStr)! * Double(rightValStr)!)"
-                }else if op == Operation.Subtract{
-                    result = "\(Double(leftValStr)! - Double(rightValStr)!)"
-                }else if op == Operation.Divide{
-                    result = "\(Double(leftValStr)! / Double(rightValStr)!)"
-                }
-                
-                leftValStr = result
-                return result
+        accumulator = operand
+        
+    }
+    
+    func performOperation(symbol: String) {
+        
+        if let operation = operations[symbol]{
+            switch operation {
+            case .Constant(let value):
+                accumulator = value
+            case .UnaryOperation(let function):
+                accumulator = function(accumulator)
+            case .BinaryOperation(let opp):
+                executePendingBinaryOperation()
+                pending = PendingBinaryOperationInfo(binaryFunction: opp, firstOperand: accumulator)
+            case.Equals:
+                executePendingBinaryOperation()
             }
-            curOperation = op
-        }else{
-            
-            leftValStr = runNumb
-            runNumb = ""
-            playSound()
-            curOperation = op
-            
+        }
+    }
+    
+    func clearDisplay() {
+        pending = nil
+    }
+    
+    private func executePendingBinaryOperation() {
+        if pending != nil {
+            accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
+            pending = nil
         }
         
-        return result
     }
-
     
     func playSound(){
         btnSnd.play()
     }
+    
     
 }

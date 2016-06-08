@@ -12,7 +12,18 @@ import AVFoundation
 class ViewController: UIViewController {
     
     
-    @IBOutlet weak var displayLbl: UILabel!
+    @IBOutlet private weak var displayLbl: UILabel!
+    private var userIsInTheMiddleOfTyping = false
+    
+    private var displayValue: Double {
+        get {
+            return Double(displayLbl.text!)!
+        }
+        set {
+            displayLbl.text = String(newValue)
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,85 +33,46 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func numberPressed(btn : UIButton){
+    @IBAction private func numberPressed(btn : UIButton){
+        let digit = btn.currentTitle!
+        if userIsInTheMiddleOfTyping {
+            let textCurrentlyInDisplay = displayLbl.text!
+            displayLbl.text = textCurrentlyInDisplay + digit
+        }else {
+            displayLbl.text = digit
+        }
+        userIsInTheMiddleOfTyping = true
         AppData.instance.playSound()
-        AppData.instance.runNumb += "\(btn.tag)"
-        updateDisplay(AppData.instance.runNumb)
     }
     
-    @IBAction func decimalPoint(sender: UIButton) {
-        AppData.instance.playSound()
-        AppData.instance.runNumb += "."
-        updateDisplay(AppData.instance.runNumb)
-    }
-    @IBAction func addPressed(sender: UIButton) {
-        if AppData.instance.curOperation != AppData.Operation.Empty {
-            updateDisplay(AppData.instance.processOperation(AppData.Operation.Add))
-        }else {
-            AppData.instance.processOperation(AppData.Operation.Add)
-        }
-    }
-    
-    @IBAction func subtractPressed(sender: UIButton) {
-        if AppData.instance.curOperation != AppData.Operation.Empty {
-            updateDisplay(AppData.instance.processOperation(AppData.Operation.Subtract))
-        }else {
-            AppData.instance.processOperation(AppData.Operation.Subtract)
-        }
-    }
-    
-    @IBAction func multiplyPressed(sender: UIButton) {
-        if AppData.instance.curOperation != AppData.Operation.Empty  {
-            updateDisplay(AppData.instance.processOperation(AppData.Operation.Multiply))
-        }else {
-            AppData.instance.processOperation(AppData.Operation.Multiply)
-        }
+    @IBAction private func periodPressed(sender: UIButton) {
+       var displaytext : String = String(displayValue)
+        displaytext = displaytext.substringWithRange(Range<String.Index>(start: displaytext.startIndex, end: displaytext.endIndex.advancedBy(-1)))
+        displayLbl.text = displaytext
         
     }
     
-    @IBAction func dividePressed(sender: UIButton) {
-        if AppData.instance.curOperation != AppData.Operation.Empty {
-            updateDisplay( AppData.instance.processOperation(AppData.Operation.Divide))
-        }else {
-            AppData.instance.processOperation(AppData.Operation.Divide)
+    
+    @IBAction private func performOperation(sender: UIButton) {
+        if userIsInTheMiddleOfTyping {
+            AppData.instance.setOperand(displayValue)
+            userIsInTheMiddleOfTyping = false
         }
-    }
-    
-    @IBAction func clearDisplay(sender: UIButton) {
-        AppData.instance.curOperation = AppData.Operation.Empty
-        AppData.instance.leftValStr = ""
-        AppData.instance.rightValStr = ""
-        AppData.instance.result = ""
-        updateDisplay("0")
-    }
-    
-    @IBAction func equalsPressed(sender: UIButton) {
-        if AppData.instance.curOperation != AppData.Operation.Empty{
-            if AppData.instance.runNumb != ""{
-                AppData.instance.rightValStr = AppData.instance.runNumb
-                AppData.instance.runNumb = ""
-                AppData.instance.playSound()
-                
-                if AppData.instance.curOperation == AppData.Operation.Add{
-                    AppData.instance.result = "\(Double(AppData.instance.leftValStr)! + Double(AppData.instance.rightValStr)!)"
-                }else if AppData.instance.curOperation == AppData.Operation.Multiply{
-                    AppData.instance.result = "\(Double(AppData.instance.leftValStr)! * Double(AppData.instance.rightValStr)!)"
-                }else if AppData.instance.curOperation == AppData.Operation.Subtract{
-                    AppData.instance.result = "\(Double(AppData.instance.leftValStr)! - Double(AppData.instance.rightValStr)!)"
-                }else if AppData.instance.curOperation == AppData.Operation.Divide{
-                    AppData.instance.result = "\(Double(AppData.instance.leftValStr)! / Double(AppData.instance.rightValStr)!)"
-                }
-                
-                AppData.instance.leftValStr = AppData.instance.result
-                updateDisplay(AppData.instance.result)
-            }
+        
+        if let mathmaticalSymbol = sender.currentTitle {
+            
+            AppData.instance.performOperation(mathmaticalSymbol)
             
         }
+        displayValue = AppData.instance.res
+        
     }
     
-    func updateDisplay(num: String){
-        displayLbl.text = num
-    }
     
+    @IBAction private func clearDisplay(sender: UIButton) {
+        AppData.instance.clearDisplay()
+        userIsInTheMiddleOfTyping = false
+        displayValue = 0
+    }
 }
 
